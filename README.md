@@ -4,8 +4,10 @@
 - From the Product dropdown menu, select BPM Suite.
 - From the Version dropdown menu, select 6.0.3 (or newer)
 - Install Red Hat JBoss BPMS:
-    - 5.1 run the jar file
-> java -jar jboss-bpms-installer-6.0.3.GA-redhat-1.jar
+    - Run the jar file
+    ~~~
+java -jar jboss-bpms-installer-6.0.3.GA-redhat-1.jar
+~~~
     - Select a folder where no JBoss EAP installation exists and EAP 6.1.1 will be installed.
     - Create one user for admin role
     - Create one user for application role
