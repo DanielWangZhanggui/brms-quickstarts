@@ -32,7 +32,7 @@ java -jar jboss-bpms-installer-6.0.3.GA-redhat-1.jar
 
 # Quick Starts:
 - Start BPMS Workbench:
-    - <BPMS_HOME>/jboss-eap-6.1/bin/standalone.sh
+    - \<BPMS_HOME\>/jboss-eap-6.1/bin/standalone.sh
 - Login to BPMS Workbench(localhost:8080/business-central):
     - Application User Credential
 - Create a Organization Unit
