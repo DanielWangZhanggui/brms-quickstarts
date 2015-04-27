@@ -1,0 +1,26 @@
+package com.sample
+ 
+import com.sample.A;
+ 
+global java.util.List count;
+
+rule "unique"
+	salience 100
+    when
+        $a1 : A ()
+        $a2 : A (this != $a1, id == $a1.id, date == $a1.date)
+    then
+        System.out.println( "Found duplicate. Retract the latter : " + $a1 + " and " + $a2 );
+        retract($a2)
+end
+
+
+rule "count"
+	salience 0
+    when
+        $a1 : A (id == "1")
+    then
+        System.out.println( "id = 1, counting " + $a1 );
+        count.add($a1);
+end
+

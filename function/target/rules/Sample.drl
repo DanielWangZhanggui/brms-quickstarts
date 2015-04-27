@@ -1,0 +1,21 @@
+package com.sample
+
+import com.sample.Message
+
+function boolean alwaysTrue() { 
+	return true;
+}
+
+rule "rule 1" when
+    m : Message(text:text )
+then
+	System.out.println("rule 1 "+ text);
+   // retract(m);
+end
+
+rule "rule 2" when
+    Message( alwaysTrue(), text == "Hello, HAL. Do you read me, HAL?" )
+then
+	System.out.println("rule 2");
+    insert( new Message("HAL", "Dave. I read you." ) );
+end

@@ -1,0 +1,58 @@
+//created on: Sep 11, 2013
+package demo.stocks
+
+import demo.stock.Tick
+import java.math.BigDecimal
+
+//Declare sellTolerance and buyTolerance as global,For example: global BigDecimal sellTolerance
+global BigDecimal sellTolerance
+global BigDecimal buyTolerance
+
+//Declare Tick as an Event.
+declare Tick
+@role(event)
+@timestamp(timestamp)
+end
+
+
+rule "Print Ticks"
+    when
+        $tick : Tick( ) from entry-point "stock feed"
+    then
+        System.out.println("Got tick for " + $tick.getSymbol());
+end
+
+rule "Sell"
+	when
+		$tick1 : Tick( $price1 : price, $symbol : symbol ) from entry-point "stock feed"
+		Tick( this after[0s,30s] $tick1, $price2 : price, $symbol == symbol ) from entry-point "stock feed"
+		//$eventA : EventA( this after[ 3m30s, 4m ] $eventB ) 
+		//3m30s <= $eventA.startTimestamp - $eventB.endTimeStamp <= 4m 
+		eval( $price2.subtract($price1).compareTo(sellTolerance) >= 0  )
+	then
+		System.out.println($symbol + " should be sold: " + 
+			$price1 + " => " + $price2); 
+end
+
+rule "Buy"
+	when
+		$tick1 : Tick( $price1 : price, $symbol : symbol ) from entry-point "stock feed"
+		Tick( this after[0s,30s] $tick1, $price2 : price, $symbol == symbol ) from entry-point "stock feed"
+		eval( $price1.subtract($price2).compareTo(buyTolerance) >= 0  )
+	then
+		System.out.println($symbol + " should be bought: " + 
+			$price1 + " => " + $price2); 
+end
+
+rule "High Volume Trading on AAPL"
+	when
+		$volume : Number( longValue > 300 ) from accumulate (
+			Tick( $shares : shares, symbol == "AAPL" ) over window:time(30s) from entry-point "stock feed" 
+				, sum($shares))
+	//Sliding Time Windows allow the user to write rules that will only match events occurring in the last X time units.
+	//For instance, if the user wants to consider only the Stock Ticks that happened in the last 2 minutes, the pattern would look like this:
+	//StockTick() over window:time( 2m )
+	//Drools uses the "over" keyword to associate windows to patterns.
+	then
+		System.out.println("High volume trading on AAPL: " + $volume);
+end

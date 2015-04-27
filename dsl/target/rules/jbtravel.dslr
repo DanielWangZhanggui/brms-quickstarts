@@ -1,0 +1,41 @@
+
+package com.jbtravel
+
+//list any import classes here.
+import java.math.BigDecimal
+import com.jbtravel.model.*
+
+expander jbtravel.dsl
+
+// First Class upgrade rules
+rule "Bronze Class Upgrade"
+	when
+		Customer is Bronze status
+		Customer wishes to upgrade to first class
+	then
+		Charge 400.00 class upgrade fee
+end
+rule "Silver Class Upgrade"
+	when
+		Customer is Silver status
+		Customer wishes to upgrade to first class
+	then
+		Charge 300.00 class upgrade fee
+end
+
+rule "Gold Class Upgrade"
+	when 
+		Customer is Gold status
+		Customer wishes to upgrade to first class
+	then
+		Charge 200.00 class upgrade fee
+end
+		
+
+rule "Not a Frequent Flyer Upgrade"
+	when 
+		Customer is not a frequent flyer
+		Customer wishes to upgrade to first class
+	then
+		Charge 450.00 class upgrade fee
+end
