@@ -16,11 +16,16 @@
         - Window -> Preference -> Drools -> Installed Drools Runtime -> Add
         - Input the localation of BPMS Engine
     - Apply
+- Install BRMS
+    - put the jboss-eap-6.4.0.zip and jboss-brms-6.2.0.GA-deployable-eap6.x.zip in the same directory.
+    - unzip jboss-eap-6.4.0.zip
+    - unzip jboss-brms-6.2.0.GA-deployable-eap6.x.zip 
+       
 
 
 # Quick Starts:
 - Start BPMS Workbench:
-    - \<BPMS_HOME\>/jboss-eap-6.1/bin/standalone.sh
+    - \<BPMS_HOME\>/jboss-eap-6.4/bin/standalone.sh
 - Login to BPMS Workbench(localhost:8080/business-central):
     - Application User Credential
 - Create a Organization Unit
