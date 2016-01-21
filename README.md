@@ -1,21 +1,9 @@
 # Installlation steps:
-- Go to the Red Hat Customer Portal (http://access.redhat.com) and log in.
-- Select Downloads > Red Hat JBoss Middleware > Download Software.
-- From the Product dropdown menu, select BPM Suite.
-- From the Version dropdown menu, select 6.0.3 (or newer)
-- Install Red Hat JBoss BPMS:
-    - Run the jar file
-    ~~~
-java -jar jboss-bpms-installer-6.0.3.GA-redhat-1.jar
-~~~
-    - Select a folder where no JBoss EAP installation exists and EAP 6.1.1 will be installed.
-    - Create one user for admin role
-    - Create one user for application role
-    - Uncheck "Enable the Java security manager"
-    - Type passwords for Server keystore password and Client keystore password to configure JMS SSL Package
-    - Uncheck Enable pure IPV6 configuration.
-    - Choose the Perform default configuration.
-    - Configure password vault.
+- Go to the Download page (https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=brms&downloadType=distributions) and log in.
+- Download Red Hat JBoss BRMS 6.2.0 Deployable for EAP 6
+- Download Red Hat JBoss BRMS 6.2.0 Core Engine
+- Download Red Hat JBoss BRMS 6.2.0 Supplementary Tools
+- Download Red Hat JBoss EAP 4 (https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=appplatform&version=6.4)
 - Install Drools plugins to Redhat JBDS
     - Install Redhat JBDS
     > java -jar jbdevstudio-product-universal-7.1.1.GA-v20140314-2145-B688.jar
